@@ -31,6 +31,11 @@ REPO_ROOT = Path(__file__).resolve().parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+import importlib
+for mod_name in ["common.schemas", "common.github", "common.llm", "common.db", "exercises.exercise_4_audit"]:
+    if mod_name in sys.modules:
+        importlib.reload(sys.modules[mod_name])
+
 from common.db import db_path, replay_events
 from exercises.exercise_4_audit import build_graph
 
