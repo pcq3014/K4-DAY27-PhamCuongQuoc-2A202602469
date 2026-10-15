@@ -32,7 +32,11 @@ class PullRequest:
     files_changed: list[str]
 
 
+from dotenv import load_dotenv
+
+
 def _token() -> str:
+    load_dotenv(override=True)
     tok = os.environ.get("GITHUB_TOKEN")
     if not tok:
         raise RuntimeError(
